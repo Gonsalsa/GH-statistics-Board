@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel, EmailStr
+import os
+import GetProfile
 
 
 app = FastAPI()
@@ -15,8 +17,8 @@ class User(BaseModel):
 
 user = User(name="sebastian", email="sebastian@email.com", account_id=1)
 
-print(user)
+GITHUB_PAT = os.getenv("PAT")
 
-@app.get("/hello")
-def hello():
-    return user
+@app.get("/api/GitHubInfo")
+def get_github_info():
+   return GetProfile.get_profile()
