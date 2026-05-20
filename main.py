@@ -1,10 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel, EmailStr
-import GetProfile
-import RepoEndpoint
-import CommitsEndPoint
-import LanguageEndpoint
-
+from Endpoints import CommitsEndPoint, LanguageEndpoint, ProfileEndpoints, RepoEndpoint
 
 app = FastAPI()
 
@@ -22,16 +18,16 @@ user = User(name="sebastian", email="sebastian@email.com", account_id=1)
 
 @app.get("/api/GitHubInfo")
 def get_github_info():
-   return GetProfile.get_profile()
+   return ProfileEndpoints.get_profile()
 
 @app.get("/api/repos")
 def get_repos():
-    return (RepoEndpoint.GetRepos())
+    return RepoEndpoint.GetRepos()
 
 @app.get("/api/commits")
 def get_commits():
-    return (CommitsEndPoint.GetCommits())
+    return CommitsEndPoint.GetCommits()
 
 @app.get("/api/languages")
 def get_languages():
-    return (LanguageEndpoint.GetLanguage())
+    return LanguageEndpoint.GetLanguage()
