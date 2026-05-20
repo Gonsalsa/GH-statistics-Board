@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel, EmailStr
 import GetProfile
 import RepoEndpoint
+import CommitsEndPoint
 
 
 app = FastAPI()
@@ -25,3 +26,7 @@ def get_github_info():
 @app.get("/api/repos")
 def get_repos():
     return (RepoEndpoint.GetRepos())
+
+@app.get("/api/commits")
+def get_commits():
+    return (CommitsEndPoint.GetCommits())
