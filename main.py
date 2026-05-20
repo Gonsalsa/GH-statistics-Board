@@ -3,6 +3,7 @@ from pydantic import BaseModel, EmailStr
 import GetProfile
 import RepoEndpoint
 import CommitsEndPoint
+import LanguageEndpoint
 
 
 app = FastAPI()
@@ -30,3 +31,7 @@ def get_repos():
 @app.get("/api/commits")
 def get_commits():
     return (CommitsEndPoint.GetCommits())
+
+@app.get("/api/languages")
+def get_languages():
+    return (LanguageEndpoint.GetLanguage())
