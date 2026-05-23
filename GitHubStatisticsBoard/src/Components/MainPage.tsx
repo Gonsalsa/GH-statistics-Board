@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 
+import "../CSS/style.css"
 
 import type {Repos} from "../Types/RepoType.ts";
 import type {Commits} from "../Types/CommitsType.ts";
@@ -15,91 +16,52 @@ const MainPage = () => {
     const [commits, setCommits] = useState<Commits[]>([])
     const [profile, setProfile] = useState<Profile | null>(null)
 
-    const fetchrepos = async() => {
-        try {
-            const data = await getRepos();
-            setRepo(data);
-        }
-        catch (error)
-        {
-            console.error(error)
-        }
-    }
-
-    const fetchcommits = async () => {
-        try {
-            const data = await getCommits();
-            setCommits(data)
-        }
-        catch (error)
-        {
-            console.error(error)
-        }
-    }
-
-    const fetchprofile = async () => {
-        try {
-            const data = await getProfile();
-            setProfile(data)
-        }
-        catch (error)
-        {
-            console.error(error)
-        }
-    }
-
-
-    useEffect(()=> {fetchrepos()
-    }, []);
-
-    useEffect(() => {fetchcommits()
-    }, []);
-
-    useEffect(() => {fetchprofile()
+    useEffect(() => {
+        getRepos().then(setRepo).catch(console.error)
+        getCommits().then(setCommits).catch(console.error)
+        getProfile().then(setProfile).catch(console.error)
     }, []);
 
 
+    return (
+        <div className="dashboard">
 
-    return <>
+            <div className="card">
+                {profile && (
+                    <>
+                        <h2>{profile.Username}</h2>
+                        <p>{profile.name}</p>
+                        <p>{profile.Email}</p>
+                        <p>Public Repos: {profile.repoCount}</p>
+                    </>
+                )}
+            </div>
 
-        <h1>Your GitHub Statistics</h1>
+            <div className="card">
+                <p className="label">Top Repos</p>
+                {repo.map((r) => (
+                    <div key={r.name} className="repo-item">
+                        <span className="repo-link">{r.name}</span>
+                        <span> Stars {r.stars} | Watchers: {r.Watchers}</span>
+                    </div>
+                ))}
+            </div>
 
-        <div id="profile">
-            {profile && (
-                <div>
-                    <h2>{profile.Username}</h2>
-                    <p>{profile.name}</p>
-                    <p>Email: {profile.Email}</p>
-                    <p>Numeber of public repos: {profile.repoCount}</p>
+            <div className="card">
+                <p className="label">Latest Commits</p>
+                <div className="commit-scroll">
+                    {commits.map((c, index) => (
+                        <div key={index} className="commit-row">
+                            <span className="sha">{c.repo}</span>
+                            <p>{c.message}</p>
+                            <p>{c.date}</p>
+                        </div>
+                    ))}
                 </div>
-            )}
-        </div>
-
-        <div id="repos">
-            <h2>Top repos</h2>
-            {repo.map((r) => (
-                <div>
-                    <h3>{r.name}</h3>
-                    <p>Numbers of star marks: {r.stars}</p>
-                    <p>Numbers of watchers: {r.Watchers}</p>
-                </div>
-            ))}
+            </div>
 
         </div>
-
-        <div id="commits"></div>
-            <h2>Latest Commits</h2>
-            {commits.map((c) => (
-                <div>
-                    <h3>{c.repo}</h3>
-                    <p>{c.author}</p>
-                    <p>{c.date}</p>
-                    <p>{c.message}</p>
-                </div>
-            ))}
-
-
-    </>
+    )
 
 }
 export default MainPage;

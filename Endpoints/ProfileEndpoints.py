@@ -17,5 +17,5 @@ def get_profile():
         "name": data["name"],
         "Username": data["login"],
         "Email": data["email"],
-        "Number of public repos: ": data["public_repos"]
+        "repoCount: ": data["public_repos"]
     }
