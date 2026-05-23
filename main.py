@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, EmailStr
-from Endpoints import CommitsEndPoint, LanguageEndpoint, ProfileEndpoints, RepoEndpoint
+from Endpoints import CommitsEndPoint, LanguageEndpoint, ProfileEndpoints, RepoEndpoint, BaseEndpoint
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -27,7 +27,7 @@ user = User(name="sebastian", email="sebastian@email.com", account_id=1)
 
 @app.get("/")
 def get_root():
-    return FileResponse("index.html")
+    return BaseEndpoint.get_baseinfo()
 
 @app.get("/api/GitHubInfo")
 def get_github_info():
