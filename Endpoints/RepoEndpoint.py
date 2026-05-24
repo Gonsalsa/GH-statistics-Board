@@ -22,7 +22,8 @@ def GetRepos():
         result.append({
         "name": repo["name"],
         "stars": repo["stargazers_count"],
-        "Watchers": repo["watchers_count"]
+        "Watchers": repo["watchers_count"],
+        "htmlURL": repo["html_url"]
         })
 
     return result

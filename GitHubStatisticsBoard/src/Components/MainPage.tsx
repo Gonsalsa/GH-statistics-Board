@@ -23,6 +23,7 @@ const MainPage = () => {
     }, []);
 
 
+
     return (
         <div className="dashboard">
 
@@ -41,7 +42,9 @@ const MainPage = () => {
                 <p className="label">Top Repos</p>
                 {repo.map((r) => (
                     <div key={r.name} className="repo-item">
-                        <span className="repo-link">{r.name}</span>
+                        <a href={r.htmlURL} target="_blank" rel="noreferrer" className="repo-link">
+                            {r.name}
+                        </a>
                         <span> Stars {r.stars} | Watchers: {r.Watchers}</span>
                     </div>
                 ))}

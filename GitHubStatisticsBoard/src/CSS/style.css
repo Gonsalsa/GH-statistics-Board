@@ -7,6 +7,12 @@
     padding: 1rem;
 }
 
+@media (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+
 .card {
     background: #161b22;
     board: 1px solid #30363d;
