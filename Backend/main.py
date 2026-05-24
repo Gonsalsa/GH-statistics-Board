@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel, EmailStr
-from Backend.Endpoints import BaseEndpoint
-from Backend.Endpoints import LanguageEndpoint, ProfileEndpoints, RepoEndpoint, CommitsEndPoint
+from Endpoints import BaseEndpoint
+from Endpoints import LanguageEndpoint, ProfileEndpoints, RepoEndpoint, CommitsEndPoint
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
