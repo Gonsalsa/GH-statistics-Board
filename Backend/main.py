@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from pydantic import BaseModel, EmailStr
 from Endpoints import BaseEndpoint
 from Endpoints import LanguageEndpoint, ProfileEndpoints, RepoEndpoint, CommitsEndPoint
 from fastapi.middleware.cors import CORSMiddleware
@@ -17,14 +16,6 @@ app.add_middleware(
 
 #To start the api, write this in the terminal:
 # uvicorn main:app --reload
-
-
-class User(BaseModel):
-    name: str
-    email: EmailStr
-    account_id: int
-
-user = User(name="sebastian", email="sebastian@email.com", account_id=1)
 
 
 @app.get("/")
