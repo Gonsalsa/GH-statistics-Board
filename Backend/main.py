@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
 from pydantic import BaseModel, EmailStr
-from Endpoints import CommitsEndPoint, LanguageEndpoint, ProfileEndpoints, RepoEndpoint, BaseEndpoint
+from Backend.Endpoints import BaseEndpoint
+from Backend.Endpoints import LanguageEndpoint, ProfileEndpoints, RepoEndpoint, CommitsEndPoint
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
