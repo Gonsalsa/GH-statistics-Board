@@ -9,7 +9,9 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=
     ["http://localhost:5173",
-     "https://gh-statistics-backend-production.up.railway.app"],
+     "https://gh-statistics-backend-production.up.railway.app",
+     "https://frontend-production-25a0.up.railway.app"
+     ],
     allow_methods=["*"],
     allow_headers=["*"],
 )
