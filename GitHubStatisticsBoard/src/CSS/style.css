@@ -15,9 +15,11 @@
 
 .card {
     background: #161b22;
-    board: 1px solid #30363d;
+    border: 1px solid #30363d;
     border-radius: 12px;
     padding: 1rem 1.25rem;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .label {
@@ -40,4 +42,12 @@
     border-radius: 4px;
     padding: 1px 5px;
     color: #8b949e;
+}
+
+.avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 1px solid #30363d;
 }

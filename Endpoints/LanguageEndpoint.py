@@ -18,4 +18,10 @@ def GetLanguage():
         if repo["language"]:
             language_counter[repo["language"]] += 1
 
-    return language_counter.most_common(5)
+    result = []
+    for lang,  counter in language_counter.most_common():
+        result.append({
+            "language": lang, "count": counter
+        })
+
+    return result
